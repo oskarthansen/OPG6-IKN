@@ -56,7 +56,7 @@ namespace tcp
 		/// </param>
 		public static void writeTextTCP(NetworkStream outToServer, String line)
 		{
-			System.Text.UTF8Encoding  encoding=new System.Text.UTF8Encoding();
+			System.Text.UTF8Encoding encoding=new System.Text.UTF8Encoding();
 			outToServer.Write(encoding.GetBytes(line), 0, line.Length);
 			outToServer.WriteByte(0);
 		}

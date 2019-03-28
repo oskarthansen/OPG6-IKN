@@ -35,13 +35,8 @@ namespace tcp
             // TO DO Your own code
             TcpListener serverSocket = new TcpListener(localAddr, PORT);
             serverSocket.Start();
-                     
-            // Buffer for reading data
-            Byte[] bytes = new Byte[BUFSIZE];
-            String data = null;
-
-
-
+         
+   
             while (true)
             {
                 try
@@ -51,34 +46,29 @@ namespace tcp
                     // Accept requests
                     TcpClient client = serverSocket.AcceptTcpClient();
                     Console.WriteLine("Connected to client!");
-                   
-
-
                     NetworkStream stream = client.GetStream();
 
-                    //sendFile("Sendt fra sevrver", 0, stream);
 
-                    int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
-                        // Translate data bytes to a ASCII string.
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine("Received: {0}", data);
+					string fileName = LIB.readTextTCP(stream);
+					Console.WriteLine($"Client asks for file: {fileName}");
+					Console.WriteLine("Cheking if file exists...");
 
-                        /*
-                        // Process the data sent by the client.
-                        data = data.ToUpper();
+					long fileSize = LIB.check_File_Exists(fileName);
 
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+                    if (fileSize > 0)
+					{
+						Console.WriteLine($"File exists an has size: {fileSize}");
+						LIB.writeTextTCP(stream, fileSize.ToString());
+						sendFile(fileName, fileSize, stream);
 
-                        // Send back a response.
-                        stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine("Sent: {0}", data);
-                        */
-                    }
+					}
+					else
+					{
+						Console.WriteLine("File does not exist");
+						LIB.writeTextTCP(stream, fileSize.ToString());
+					}
 
-                    client.Close();
-
+					client.Close();               
                 }
 
                 catch (Exception ex)
@@ -86,14 +76,16 @@ namespace tcp
                     Console.WriteLine(ex.ToString());
                              
                 }
+
+                
                                 
             }
-
-
+         
 		}
-
+       
+                    
 		/// <summary>
-		/// Sends the file.
+		/// Sends the file.                                             
 		/// </summary>
 		/// <param name='fileName'>
 		/// The filename.
@@ -106,21 +98,33 @@ namespace tcp
 		/// </param>
 		private void sendFile (String fileName, long fileSize, NetworkStream io)
 		{
-            // TO DO Your own code
-            // Convert string to bytes
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(fileName);
+			int tempFileSize = (int)fileSize;
+			Console.WriteLine($"Sending file {fileName}");
 
-            // Send back response
-            io.Write(msg, 0, msg.Length);
+			Byte[] bytes = File.ReadAllBytes(fileName);
 
-            Console.WriteLine("Sent: {0}", fileName);
+			int offset = 0;
+			while(fileSize > BUFSIZE)
+			{
+				io.Write(bytes, offset, BUFSIZE);
+				offset += BUFSIZE;
+				fileSize -= BUFSIZE;
+				Console.WriteLine($"Transferred {offset} of {tempFileSize} bytes");
+			}
+            
+			io.Write(bytes, offset, (int)fileSize);
+			Console.WriteLine($"Transferred {offset + (int)fileSize} of {tempFileSize} bytes");
+
+			Console.WriteLine("File sent!");
+			LIB.writeTextTCP(io, $"File {fileName} sent");
+
 
         }
 
 		/// <summary>
 		/// The entry point of the program, where the program control starts and ends.
 		/// </summary>
-		/// <param name='args'>
+		/// <param name='args'>fileSize
 		/// The command-line arguments.
 		/// </param>
 		public static void Main (string[] args)
