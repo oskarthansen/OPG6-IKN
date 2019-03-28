@@ -141,10 +141,6 @@ namespace tcp
 
 		}
 
-        private void SetupConnection()
-		{
-			
-		}
 
 
 		/// <summary>
