@@ -14,3 +14,11 @@ C:/Users/oskar/OneDrive - Aarhus universitet/4. semester/IKN (Introduktion til k
 /root/Documents/Opg6/OPG6-IKN/Exercise_6_c#/file_client/obj/x86/Debug/file_client.csproj.CoreCompileInputs.cache
 /root/Documents/Opg6/OPG6-IKN/Exercise_6_c#/file_client/obj/x86/Debug/file_client.exe
 /root/Documents/Opg6/OPG6-IKN/Exercise_6_c#/file_client/obj/x86/Debug/file_client.pdb
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/bin/Debug/file_client.exe
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/bin/Debug/file_client.pdb
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/bin/Debug/LIB.dll
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/bin/Debug/LIB.pdb
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/obj/x86/Debug/file_client.csprojResolveAssemblyReference.cache
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/obj/x86/Debug/file_client.csproj.CoreCompileInputs.cache
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/obj/x86/Debug/file_client.exe
+/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/obj/x86/Debug/file_client.pdb

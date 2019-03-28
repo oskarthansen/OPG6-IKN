@@ -30,8 +30,8 @@ namespace tcp
 		long fileSize = 0;
 		private string ServerIP;
 		private string FileFromServer;
-		private string FilePathServer = "/root/Documents/OPG6-IKN/Exercise_6_c#/Documents/";
-		private string FileSavePath = "/root/Documents/Opg6/OPG6-IKN/Exercise_6_c#/file_client/bin/Debug/";
+		private string FilePathServer = "/root/Documents/OPG6-IKN/Server/Exercise_6_c#/Documents/";
+		private string FileSavePath = "/root/Documents/Opg6/OPG6-IKN/Client/Exercise_6_c#/file_client/bin/Debug/";
         private file_client (string[] args)
 		{
 			// Setting Path and IP
